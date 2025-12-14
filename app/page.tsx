@@ -12,8 +12,8 @@ export default function Home() {
       <h1 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>
         Добро пожаловать в Next.js!
       </h1>
-      <p style={{ fontSize: '1.2rem', color: '#666' }}>
-        Минимальное приложение успешно создано
+      <p style={{ fontSize: '1.2rem', color: 'A12727' }}>
+        Я изучаю Next.js
       </p>
     </main>
   )
