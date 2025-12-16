@@ -22,3 +22,6 @@ npm run dev
 - `npm run build` - сборка для production
 - `npm start` - запуск production сервера
 - `npm run lint` - проверка кода линтером
+
+## Описание проекта 
+PROJECT.md
