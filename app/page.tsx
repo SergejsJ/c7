@@ -75,8 +75,12 @@ export default function Home() {
       <div className="max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
         {/* Заголовок */}
         <div className="text-center" style={{ marginBottom: '48px' }}>
-          <div className="mb-3">
-            <span className="text-4xl">🤖</span>
+          <div className="mb-3 flex justify-center">
+            <img 
+              src="/robot-icon.png" 
+              alt="Robot AI" 
+              className="w-16 h-16 sm:w-20 sm:h-20 object-contain"
+            />
           </div>
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-purple-700 leading-tight">
             Референт - переводчик с использованием ИИ
