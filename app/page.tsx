@@ -177,31 +177,36 @@ export default function Home() {
         </div>
 
         {/* Секция результата */}
-        <div className="bg-gray-100 rounded-md p-4" style={{ minHeight: '20px' }}>
-          {isLoading ? (
-            <div className="flex items-center gap-3">
-              <div className="relative">
-                <div className="w-6 h-6 border-2 border-purple-200 border-t-purple-600 rounded-full animate-spin"></div>
+        <div>
+          <p className="text-gray-700 text-sm sm:text-base" style={{ marginBottom: '16px' }}>
+            Результат:
+          </p>
+          <div className="bg-gray-100 rounded-md" style={{ minHeight: '50px', padding: result || isLoading ? '16px' : '5px' }}>
+            {isLoading ? (
+              <div className="flex items-center gap-3">
+                <div className="relative">
+                  <div className="w-6 h-6 border-2 border-purple-200 border-t-purple-600 rounded-full animate-spin"></div>
+                </div>
+                <span className="text-gray-700">Генерация результата...</span>
               </div>
-              <span className="text-gray-700">Генерация результата...</span>
-            </div>
-          ) : result ? (
-            <div>
-              <div className="mb-3 text-gray-700 font-medium flex items-center gap-2">
-                <span>
-                  {actionType === 'summary' ? '📄' : actionType === 'theses' ? '📝' : '✈️'}
-                </span>
-                <span>
-                  {actionType === 'summary' ? 'О чем статья?' : actionType === 'theses' ? 'Тезисы' : 'Пост для Telegram'}
-                </span>
+            ) : result ? (
+              <div>
+                <div className="mb-3 text-gray-700 font-medium flex items-center gap-2">
+                  <span>
+                    {actionType === 'summary' ? '📄' : actionType === 'theses' ? '📝' : '✈️'}
+                  </span>
+                  <span>
+                    {actionType === 'summary' ? 'О чем статья?' : actionType === 'theses' ? 'Тезисы' : 'Пост для Telegram'}
+                  </span>
+                </div>
+                <div className="text-gray-800 whitespace-pre-wrap break-words overflow-wrap-anywhere word-break-break-all">
+                  {result}
+                </div>
               </div>
-              <div className="text-gray-800 whitespace-pre-wrap break-words overflow-wrap-anywhere word-break-break-all">
-                {result}
-              </div>
-            </div>
-          ) : (
-            <p className="text-gray-400 text-center">Результат будет отображен здесь</p>
-          )}
+            ) : (
+              <p className="text-gray-400 text-center" style={{ padding: '7.5px 0' }}>Результат будет отображен здесь</p>
+            )}
+          </div>
         </div>
       </div>
     </main>
