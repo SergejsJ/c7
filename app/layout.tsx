@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'C7 App',
-  description: 'Минимальное приложение на Next.js',
+  title: 'Референт - переводчик с использованием ИИ',
+  description: 'Референт - переводчик с использованием ИИ для анализа англоязычных статей',
 }
 
 export default function RootLayout({
