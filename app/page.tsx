@@ -41,17 +41,37 @@ export default function Home() {
     setActionType(type)
     setResult(null)
 
-    // Имитация обработки (здесь будет реальная логика парсинга и AI)
-    setTimeout(() => {
-      const mockResults = {
-        summary: `Статья по адресу ${trimmedUrl} рассказывает о важных аспектах современной технологии и её применении в различных сферах жизни.`,
-        theses: `• Основная тема статьи: технологические инновации\n• Ключевые моменты: развитие, применение, перспективы\n• Выводы: значимость для будущего развития`,
-        telegram: `📰 Новая статья!\n\n🔗 ${trimmedUrl}\n\nИнтересные факты и анализ в статье. Рекомендую к прочтению!`
+    try {
+      // Парсинг HTML статьи
+      const parseResponse = await fetch('/api/parse', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ url: trimmedUrl }),
+      })
+
+      if (!parseResponse.ok) {
+        const errorData = await parseResponse.json().catch(() => ({ error: 'Unknown error' }))
+        throw new Error(errorData.error || `HTTP error! status: ${parseResponse.status}`)
+      }
+
+      const parsedData = await parseResponse.json()
+      
+      // Проверяем, есть ли ошибка в ответе
+      if (parsedData.error) {
+        throw new Error(parsedData.error)
       }
       
-      setResult(mockResults[type])
+      // Форматируем результат в JSON
+      const jsonResult = JSON.stringify(parsedData, null, 2)
+      setResult(jsonResult)
+    } catch (error: any) {
+      setResult(`Ошибка: ${error.message || 'Не удалось распарсить статью'}`)
+      console.error('Parse error:', error)
+    } finally {
       setIsLoading(false)
-    }, 2000)
+    }
   }
 
   const handleClear = () => {
